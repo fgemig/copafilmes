@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaFilmes.Testes.Unidade", "tests\CopaFilmes.Testes.Unidade\CopaFilmes.Testes.Unidade.csproj", "{566D1307-4337-4A40-9BFB-DBC984C7AD13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaFilmes.Testes.Unidade", "..\tests\CopaFilmes.Testes.Unidade\CopaFilmes.Testes.Unidade.csproj", "{566D1307-4337-4A40-9BFB-DBC984C7AD13}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{44D20789-D7AB-4C2F-90F7-94C2EB6F8FF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaFilmes.Api", "src\CopaFilmes.Api\CopaFilmes.Api.csproj", "{B87A4CFE-4434-4675-A1C5-CF5C87439A53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaFilmes.Api", "CopaFilmes.Api\CopaFilmes.Api.csproj", "{B87A4CFE-4434-4675-A1C5-CF5C87439A53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
