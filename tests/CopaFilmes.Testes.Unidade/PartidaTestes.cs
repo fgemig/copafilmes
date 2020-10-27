@@ -37,9 +37,7 @@ namespace CopaFilmes.Testes.Unidade
         public void IniciadoUmaPartidaDeveLancarUmaExcecaoCasoAlgumDosFilmesSejaNulo()
         {
             var filmeA = new Filme("tt2854926", "Te Peguei!", 2018, 7.1m);
-
-            Assert.Throws<ArgumentNullException>(() => new Partida(filmeA, null));
-
+          
             Action act = () => new Partida(filmeA, null);
 
             act.Should().Throw<ArgumentNullException>();
