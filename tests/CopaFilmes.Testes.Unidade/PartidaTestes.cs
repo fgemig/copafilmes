@@ -1,6 +1,7 @@
 ﻿using CopaFilmes.Api.Models;
 using System;
 using Xunit;
+using FluentAssertions;
 
 namespace CopaFilmes.Testes.Unidade
 {
@@ -16,7 +17,7 @@ namespace CopaFilmes.Testes.Unidade
 
             var filmeVencedor = partida.FilmeVencedor();
 
-            Assert.Equal(filmeA.Titulo, filmeVencedor.Titulo);
+            filmeA.Titulo.Should().Be(filmeVencedor.Titulo);
         }
 
         [Fact]
@@ -29,7 +30,7 @@ namespace CopaFilmes.Testes.Unidade
 
             var filmeVencedor = partida.FilmeVencedor();
 
-            Assert.Equal(filmeB.Titulo, filmeVencedor.Titulo);
+            filmeB.Titulo.Should().Be(filmeVencedor.Titulo);
         }
 
         [Fact]
@@ -38,6 +39,10 @@ namespace CopaFilmes.Testes.Unidade
             var filmeA = new Filme("tt2854926", "Te Peguei!", 2018, 7.1m);
 
             Assert.Throws<ArgumentNullException>(() => new Partida(filmeA, null));
+
+            Action act = () => new Partida(filmeA, null);
+
+            act.Should().Throw<ArgumentNullException>();
         }
     }
 }
