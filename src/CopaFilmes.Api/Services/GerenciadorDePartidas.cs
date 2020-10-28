@@ -10,38 +10,41 @@ namespace CopaFilmes.Api.Services
     {
         public IEnumerable<Partida> DefinirPartidas(IEnumerable<Filme> filmes)
         {
-            if (filmes.Count() % 2 != 0)
+            var partidas = new List<Partida>();
+
+            var totalDeFilmes = filmes.Count();
+
+            if (totalDeFilmes % 2 != 0)
                 throw new ArgumentException("É permitido apenas grupos de filmes pares");
 
             filmes = filmes.OrderBy(c => c.Titulo);
+           
+            var ultimoFilme = totalDeFilmes;
 
-            var partidas = new List<Partida>();
-
-            int totalFilmes = filmes.Count();
-
-            for (int i = 1; i <= filmes.Count() / 2; i++)
+            for (int contador = 1; contador <= filmes.Count() / 2; contador++)
             {
-                for (int j = totalFilmes; j >= totalFilmes; j--)
+                for (int contadorReverso = ultimoFilme; contadorReverso >= ultimoFilme; contadorReverso--)
                 {
                     var novaPartida = new Partida(
-                        filmeA: filmes.ElementAt(i - 1),
-                        filmeB: filmes.ElementAt(j - 1)
+                        filmeA: filmes.ElementAt(contador - 1),
+                        filmeB: filmes.ElementAt(contadorReverso - 1)
                     );
 
                     partidas.Add(novaPartida);
                 }
 
-                totalFilmes--;
+                ultimoFilme--;
             }
 
             return partidas;
         }
 
         public IEnumerable<Partida> DefinirProximasPartidas(IEnumerable<Filme> filmesVencedores)
-        {                      
+        {
+            var totalDeFilmesVencedores = filmesVencedores.Count();
             var partidas = new List<Partida>();
             
-            for (int i = 0; i < filmesVencedores.Count(); i += 2)
+            for (int i = 0; i < totalDeFilmesVencedores; i += 2)
             {
                 var filmes = filmesVencedores.Skip(i).Take(2);
 
