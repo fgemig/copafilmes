@@ -5,8 +5,6 @@ namespace CopaFilmes.Api.Interfaces
 {
     public interface IGerenciadorDeCampeonato
     {
-        public Filme Campeao { get; }
-        public Filme ViceCampecao { get;  }
-        public void Disputar(IEnumerable<Partida> partidas);
+        ResultadoCampeonato Disputar(IEnumerable<Partida> partidas);
     }
 }

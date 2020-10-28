@@ -14,30 +14,47 @@ namespace CopaFilmes.Api.Services
             _gerenciadorDePartidas = gerenciadorDePartidas;
         }
 
-        public Filme Campeao { get; set; }
-
-        public Filme ViceCampecao { get; set; }
-
-        public void Disputar(IEnumerable<Partida> partidas)
+        public ResultadoCampeonato Disputar(IEnumerable<Partida> partidas)
         {
             var filmesVencedores = new List<Filme>();
 
             foreach (var partida in partidas)
                 filmesVencedores.Add(partida.FilmeVencedor());
 
-            var proximasPartidas = _gerenciadorDePartidas.DefinirPartidas(filmesVencedores);
+            var proximasPartidas = _gerenciadorDePartidas.DefinirProximasPartidas(filmesVencedores);
 
             if (filmesVencedores.Count == 2)
-            {
-                Campeao = filmesVencedores.First();
-                return;
-            }
-            else
-            {
-                ViceCampecao = filmesVencedores.First();
-            }
+            {                
+                return ObterResultadoCampeonato(filmesVencedores);
+            }           
                 
-            Disputar(proximasPartidas);
+            return Disputar(proximasPartidas);
+        }
+
+        private ResultadoCampeonato ObterResultadoCampeonato(List<Filme> filmesVencedores)
+        {            
+            filmesVencedores = filmesVencedores
+                .OrderByDescending(c => c.Nota)
+                .ToList();
+
+            var filmeA = filmesVencedores.ElementAt(0);
+            var filmeB = filmesVencedores.ElementAt(1);
+
+            if (filmeA.Nota == filmeB.Nota)
+            {
+                var partidadeDeDesempate = new Partida(filmeA, filmeB);
+
+                var filmeCampeao = partidadeDeDesempate.VencedorPorCriterioDeDesempate();
+
+                var filmeViceCampeao = filmesVencedores.Where(c => c.Id != filmeCampeao.Id).First();
+
+                filmeA = filmeCampeao;
+                filmeB = filmeViceCampeao;
+            }
+            
+            var resultado = new ResultadoCampeonato(filmeA, filmeB);
+
+            return resultado;
         }
     }
 }

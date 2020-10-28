@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CopaFilmes.Api.Interfaces;
+using CopaFilmes.Api.Models;
 using CopaFilmes.Api.Services;
 using CopaFilmes.Testes.Unidade.Mocks;
 using FluentAssertions;
@@ -21,9 +23,11 @@ namespace CopaFilmes.Testes.Unidade
             var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
 
             IGerenciadorDeCampeonato gerenciadorDeCampeonatos = new GerenciadorDeCampeonato(gerenciadorDePartidas);
-            gerenciadorDeCampeonatos.Disputar(partidas);
+            var resultado = gerenciadorDeCampeonatos.Disputar(partidas);
 
-            gerenciadorDeCampeonatos.Campeao.Titulo.Should().Be("Vingadores: Guerra Infinita");
+            var campeao = resultado.Campeao.Titulo;
+
+            campeao.Should().Be("Vingadores: Guerra Infinita");
         }
 
         [Fact]
@@ -38,9 +42,37 @@ namespace CopaFilmes.Testes.Unidade
             var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
 
             IGerenciadorDeCampeonato gerenciadorDeCampeonatos = new GerenciadorDeCampeonato(gerenciadorDePartidas);
-            gerenciadorDeCampeonatos.Disputar(partidas);
+            var resultado = gerenciadorDeCampeonatos.Disputar(partidas);
 
-            gerenciadorDeCampeonatos.ViceCampecao.Titulo.Should().Be("Os Incríveis 2");
+            var viceCampeao = resultado.ViceCampeao.Titulo;
+
+            viceCampeao.Should().Be("Os Incríveis 2");
+        }
+
+        [Fact]
+        public void AoIniciarUmCampeonatoDeveDecidirUmCampeaoPorCriterioDeDesempate()
+        {
+            var listaDeFilmes = new List<Filme>()
+            {
+                new Filme("tt3606756", "Os Incríveis 2", 2018, 9),
+                new Filme("tt4154756", "Vingadores: Guerra Infinita", 2018, 9),
+                new Filme("tt4881806", "Jurassic World: Reino Ameaçado",  2018, 6.7m),
+                new Filme("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3m),
+                new Filme("tt7784604", "Hereditário", 2018, 7.8m),                
+                new Filme("tt5463162", "Deadpool 2", 2018, 8.1m),
+                new Filme("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2m),
+                new Filme("tt3501632", "Thor: Ragnarok",  2017, 7.9m)
+            };
+
+            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
+            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
+
+            IGerenciadorDeCampeonato gerenciadorDeCampeonatos = new GerenciadorDeCampeonato(gerenciadorDePartidas);
+            var resultado = gerenciadorDeCampeonatos.Disputar(partidas);
+
+            var viceCampeao = resultado.ViceCampeao.Titulo;
+
+            viceCampeao.Should().Be("Vingadores: Guerra Infinita");
         }
     }
 }
