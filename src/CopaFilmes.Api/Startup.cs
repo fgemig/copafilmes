@@ -1,12 +1,10 @@
-using CopaFilmes.Api.Dados;
-using CopaFilmes.Api.Interfaces;
-using CopaFilmes.Api.Services;
+using CopaFilmes.Api.Configs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace CopaFilmes.Api
 {
@@ -21,13 +19,9 @@ namespace CopaFilmes.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient<IRepositorioDeFilmes, RepositorioDeFilmes>(client =>
-            {
-                client.BaseAddress = new Uri(Configuration["ApiCopaFilmes"]);
-            });
+            services.AddDependencyInjectionConfiguration(Configuration);
 
-            services.AddScoped<IGerenciadorDePartidas, GerenciadorDePartidas>();
-            services.AddScoped<IGerenciadorDeCampeonato, GerenciadorDeCampeonato>();
+            services.AddSwaggerConfiguration();
 
             services.AddControllers();
         }
@@ -47,8 +41,15 @@ namespace CopaFilmes.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("Api Online!");
+                });
+
                 endpoints.MapControllers();
             });
+
+            app.UseSwaggerSetup();
         }
     }
 }
