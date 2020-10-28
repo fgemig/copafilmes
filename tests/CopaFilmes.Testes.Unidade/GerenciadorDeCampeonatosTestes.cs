@@ -19,16 +19,12 @@ namespace CopaFilmes.Testes.Unidade
                 .Take(8)
                 .ToList();
 
-            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
-            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
-
-            IGerenciadorDeCampeonato gerenciadorDeCampeonatos = new GerenciadorDeCampeonato(gerenciadorDePartidas);
-            var resultado = gerenciadorDeCampeonatos.Disputar(partidas);
+            ResultadoCampeonato resultado = ObterResultados(listaDeFilmes);
 
             var campeao = resultado.Campeao.Titulo;
 
             campeao.Should().Be("Vingadores: Guerra Infinita");
-        }
+        }        
 
         [Fact]
         public void AoIniciarUmCampeonatoDeveDecidirUmViceCampeao()
@@ -38,11 +34,7 @@ namespace CopaFilmes.Testes.Unidade
                 .Take(8)
                 .ToList();
 
-            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
-            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
-
-            IGerenciadorDeCampeonato gerenciadorDeCampeonatos = new GerenciadorDeCampeonato(gerenciadorDePartidas);
-            var resultado = gerenciadorDeCampeonatos.Disputar(partidas);
+            ResultadoCampeonato resultado = ObterResultados(listaDeFilmes);
 
             var viceCampeao = resultado.ViceCampeao.Titulo;
 
@@ -64,15 +56,22 @@ namespace CopaFilmes.Testes.Unidade
                 new Filme("tt3501632", "Thor: Ragnarok",  2017, 7.9m)
             };
 
+            ResultadoCampeonato resultado = ObterResultados(listaDeFilmes);
+
+            var viceCampeao = resultado.ViceCampeao.Titulo;
+
+            viceCampeao.Should().Be("Vingadores: Guerra Infinita");
+        }
+
+        private static ResultadoCampeonato ObterResultados(List<Filme> listaDeFilmes)
+        {
             IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
             var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
 
             IGerenciadorDeCampeonato gerenciadorDeCampeonatos = new GerenciadorDeCampeonato(gerenciadorDePartidas);
             var resultado = gerenciadorDeCampeonatos.Disputar(partidas);
 
-            var viceCampeao = resultado.ViceCampeao.Titulo;
-
-            viceCampeao.Should().Be("Vingadores: Guerra Infinita");
+            return resultado;
         }
     }
 }
