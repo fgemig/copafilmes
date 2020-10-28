@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using CopaFilmes.Api.Interfaces;
 using CopaFilmes.Api.Services;
 using CopaFilmes.Testes.Unidade.Mocks;
