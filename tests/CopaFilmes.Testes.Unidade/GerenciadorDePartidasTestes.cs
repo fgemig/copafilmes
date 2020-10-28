@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using CopaFilmes.Api.Interfaces;
 using CopaFilmes.Api.Services;
 using CopaFilmes.Testes.Unidade.Mocks;
 using FluentAssertions;
@@ -12,31 +11,32 @@ namespace CopaFilmes.Testes.Unidade
     public class GerenciadorDePartidasTestes
     {
         [Fact]
-        public void DeveRetornarUmaListaDePartidasQuandoPassadoUmaListaDeFilmes()
+        public void DeveRetornarUmaExcecaoQuandoForPassadoUmaListaDeFilmesEmFormatoIncorreto()
+        {
+            var listaDeFilmes = FilmesRepositorioFake
+                .ObterListaDeFilmes()
+                .Take(13)
+                .ToList();
+
+            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
+         
+            Action act = () => gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
+
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void DadoUmaListaDeFilmesDeveRetornarUmaListaDePartidas()
         {
             var listaDeFilmes = FilmesRepositorioFake
                 .ObterListaDeFilmes()
                 .Take(8)
                 .ToList();
 
-            var gerenciadorDePartidas = new GerenciadorDePartidas(listaDeFilmes);
+            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
+            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes);
 
-            var partidas = gerenciadorDePartidas.DefinirPartidas();
-
-            Assert.True(true);
-        }
-
-        [Fact]
-        public void DeveRetornarUmaExcecaoQuandoForPassadoUmaListaDeFilmesMaiorQueOPermitido()
-        {
-            var listaDeFilmes = FilmesRepositorioFake
-                .ObterListaDeFilmes()
-                .Take(12)
-                .ToList();
-
-            Action act = () => new GerenciadorDePartidas(listaDeFilmes);
-
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            partidas.Should().HaveCount(4);
         }
     }
 }
