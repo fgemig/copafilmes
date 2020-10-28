@@ -34,7 +34,11 @@ namespace CopaFilmes.Api.Models
             return VencedorPorCriterioDeDesempate();
         }
 
-        private Filme VencedorPorCriterioDeDesempate()
+        /// <summary>
+        /// Retorna o vencedor por critério de desempate. Será considerado o primeiro em ordem alfabética.
+        /// </summary>
+        /// <returns></returns>
+        public Filme VencedorPorCriterioDeDesempate()
         {
             var lista = new List<Filme>() { FilmeA, FilmeB };
 
