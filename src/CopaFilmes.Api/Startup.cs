@@ -1,8 +1,11 @@
+using CopaFilmes.Api.Dados;
+using CopaFilmes.Api.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace CopaFilmes.Api
 {
@@ -17,6 +20,11 @@ namespace CopaFilmes.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient<IRepositorioDeFilmes, RepositorioDeFilmes>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["ApiCopaFilmes"]);
+            });
+
             services.AddControllers();
         }
 
