@@ -6,5 +6,6 @@ namespace CopaFilmes.Api.Interfaces
     public interface IGerenciadorDePartidas
     {
         IEnumerable<Partida> DefinirPartidas(IEnumerable<Filme> filmes);
+        IEnumerable<Partida> DefinirProximasPartidas(IEnumerable<Filme> filmesVencedores);
     }
 }

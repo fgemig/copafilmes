@@ -35,7 +35,7 @@ namespace CopaFilmes.Api.Controllers
             {
                 if (string.IsNullOrEmpty(idsSelecionados))
                     return BadRequest("Nenhum ID foi informado");
-             
+
                 var filmes = await _repositorioDeFilmes
                     .ObterFilmes();
 
@@ -45,22 +45,22 @@ namespace CopaFilmes.Api.Controllers
 
                 var partidas = _gerenciadorDePartidas.DefinirPartidas(filmesSelecionados);
 
-                _gerenciadorDeCampeonato.Disputar(partidas);
+                var resultado = _gerenciadorDeCampeonato.Disputar(partidas);
 
-                var campeao = _gerenciadorDeCampeonato.Campeao;
-                var viceCampeao = _gerenciadorDeCampeonato.ViceCampecao;
-
-                return Ok(new { 
-                    campeao,
-                    viceCampeao
-                });
+                return Ok(
+                    new
+                    {
+                        partidas,
+                        resultado.Campeao,
+                        resultado.ViceCampeao
+                    });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "Falha ao consultar a API CopaFilmes");
 
                 return StatusCode(500);
-            }          
+            }
         }
     }
 }

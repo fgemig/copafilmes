@@ -38,5 +38,73 @@ namespace CopaFilmes.Testes.Unidade
 
             partidas.Should().HaveCount(4);
         }
+
+        [Fact]
+        public void AoGerarAsPartidasComUmaListaDeOitoFilmesOPrimeiroDeveDisputarComOUltimo()
+        {
+            var listaDeFilmes = FilmesRepositorioFake
+                .ObterListaDeFilmes()
+                .Take(8)
+                .ToList();
+
+            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
+            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes).ToList();
+
+            var partida = partidas[0];
+
+            partida.FilmeA.Titulo.Should().Be("Deadpool 2");
+            partida.FilmeB.Titulo.Should().Be("Vingadores: Guerra Infinita");
+        }
+
+        [Fact]
+        public void AoGerarAsPartidasComUmaListaDeOitoFilmesOSegundoDeveDisputarComOSetimo()
+        {
+            var listaDeFilmes = FilmesRepositorioFake
+                .ObterListaDeFilmes()
+                .Take(8)
+                .ToList();
+
+            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
+            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes).ToList();
+
+            var partida = partidas[1];
+
+            partida.FilmeA.Titulo.Should().Be("Han Solo: Uma História Star Wars");
+            partida.FilmeB.Titulo.Should().Be("Thor: Ragnarok");
+        }
+
+        [Fact]
+        public void AoGerarAsPartidasComUmaListaDeOitoFilmesOTerceiroDeveDisputarComOSexto()
+        {
+            var listaDeFilmes = FilmesRepositorioFake
+                .ObterListaDeFilmes()
+                .Take(8)
+                .ToList();
+
+            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
+            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes).ToList();
+
+            var partida = partidas[2];
+
+            partida.FilmeA.Titulo.Should().Be("Hereditário");
+            partida.FilmeB.Titulo.Should().Be("Os Incríveis 2");
+        }
+
+        [Fact]
+        public void AoGerarAsPartidasComUmaListaDeOitoFilmesOQuartoDeveDisputarComOQuinto()
+        {
+            var listaDeFilmes = FilmesRepositorioFake
+                .ObterListaDeFilmes()
+                .Take(8)
+                .ToList();
+
+            IGerenciadorDePartidas gerenciadorDePartidas = new GerenciadorDePartidas();
+            var partidas = gerenciadorDePartidas.DefinirPartidas(listaDeFilmes).ToList();
+
+            var partida = partidas[3];
+
+            partida.FilmeA.Titulo.Should().Be("Jurassic World: Reino Ameaçado");
+            partida.FilmeB.Titulo.Should().Be("Oito Mulheres e um Segredo");
+        }
     }
 }
