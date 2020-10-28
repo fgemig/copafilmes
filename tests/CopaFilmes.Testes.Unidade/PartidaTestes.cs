@@ -28,7 +28,7 @@ namespace CopaFilmes.Testes.Unidade
 
             var partida = new Partida(filmeA, filmeB);
 
-            var filmeVencedor = partida.FilmeVencedor();
+            var filmeVencedor = partida.VencedorPorCriterioDeDesempate();
 
             filmeB.Titulo.Should().Be(filmeVencedor.Titulo);
         }
