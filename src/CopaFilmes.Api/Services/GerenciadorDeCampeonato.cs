@@ -18,7 +18,7 @@ namespace CopaFilmes.Api.Services
 
         public Filme ViceCampecao { get; set; }
 
-        public IEnumerable<Filme> Disputar(IEnumerable<Partida> partidas)
+        public void Disputar(IEnumerable<Partida> partidas)
         {
             var filmesVencedores = new List<Filme>();
 
@@ -30,14 +30,14 @@ namespace CopaFilmes.Api.Services
             if (filmesVencedores.Count == 2)
             {
                 Campeao = filmesVencedores.First();
-                return filmesVencedores;
+                return;
             }
             else
             {
                 ViceCampecao = filmesVencedores.First();
             }
                 
-            return Disputar(proximasPartidas);
+            Disputar(proximasPartidas);
         }
     }
 }

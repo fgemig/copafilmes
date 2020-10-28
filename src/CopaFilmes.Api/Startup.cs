@@ -1,5 +1,6 @@
 using CopaFilmes.Api.Dados;
 using CopaFilmes.Api.Interfaces;
+using CopaFilmes.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,9 @@ namespace CopaFilmes.Api
             {
                 client.BaseAddress = new Uri(Configuration["ApiCopaFilmes"]);
             });
+
+            services.AddScoped<IGerenciadorDePartidas, GerenciadorDePartidas>();
+            services.AddScoped<IGerenciadorDeCampeonato, GerenciadorDeCampeonato>();
 
             services.AddControllers();
         }

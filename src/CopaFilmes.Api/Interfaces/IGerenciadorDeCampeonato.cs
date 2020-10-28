@@ -7,6 +7,6 @@ namespace CopaFilmes.Api.Interfaces
     {
         public Filme Campeao { get; }
         public Filme ViceCampecao { get;  }
-        public IEnumerable<Filme> Disputar(IEnumerable<Partida> partidas);
+        public void Disputar(IEnumerable<Partida> partidas);
     }
 }
