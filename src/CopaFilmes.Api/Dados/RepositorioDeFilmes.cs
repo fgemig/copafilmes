@@ -21,6 +21,8 @@ namespace CopaFilmes.Api.Dados
         {
             var response = await _client.GetAsync("api/filmes");
 
+            response.EnsureSuccessStatusCode();
+
             string conteudo = await response.Content.ReadAsStringAsync();
 
             var filmes = JsonConvert.DeserializeObject<IEnumerable<Filme>>(conteudo);

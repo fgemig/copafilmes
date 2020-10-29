@@ -13,7 +13,7 @@ namespace CopaFilmes.Api.Configs
         {
             services.AddHttpClient<IRepositorioDeFilmes, RepositorioDeFilmes>(client =>
             {
-                client.BaseAddress = new Uri(configuration["ApiCopaFilmes"]);
+                client.BaseAddress = new Uri(configuration["ParametrosApi:ApiCopaFilmes"]);
             });
 
             services.AddScoped<IGerenciadorDePartidas, GerenciadorDePartidas>();

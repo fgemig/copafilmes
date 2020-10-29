@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace CopaFilmes.Api.Controllers
 {
@@ -19,12 +20,18 @@ namespace CopaFilmes.Api.Controllers
         private readonly IRepositorioDeFilmes _repositorioDeFilmes;
         private readonly IMemoryCache _cache;
         private readonly ILogger<FilmesController> _logger;
+        private readonly ParametrosApi _parametros;
 
-        public FilmesController(IRepositorioDeFilmes repositorioDeFilmes, IMemoryCache cache, ILogger<FilmesController> logger)
+        public FilmesController(
+            IRepositorioDeFilmes repositorioDeFilmes, 
+            IMemoryCache cache, 
+            ILogger<FilmesController> logger,
+            IOptions<ParametrosApi> parametros)
         {
             _repositorioDeFilmes = repositorioDeFilmes;
             _cache = cache;
             _logger = logger;
+            _parametros = parametros.Value;
         }
 
         /// <summary>
@@ -47,7 +54,7 @@ namespace CopaFilmes.Api.Controllers
                 var filmes = await _repositorioDeFilmes.ObterFilmes();
 
                 _cache.Set(ChavesCache.FILMES, filmes, new MemoryCacheEntryOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(30)));
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(_parametros.CacheExpiracaoEmMinutos)));
 
                 return Ok(filmes);
             }

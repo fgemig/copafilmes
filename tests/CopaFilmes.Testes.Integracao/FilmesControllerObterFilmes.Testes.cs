@@ -1,4 +1,5 @@
-﻿using CopaFilmes.Api.Controllers;
+﻿using CopaFilmes.Api.Configs;
+using CopaFilmes.Api.Controllers;
 using CopaFilmes.Api.Interfaces;
 using CopaFilmes.Api.Models;
 using CopaFilmes.Testes.Integracao.Helpers;
@@ -7,6 +8,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -27,9 +29,17 @@ namespace CopaFilmes.Testes.Integracao
                 .ReturnsAsync(FilmesRepositorioFake.ObterListaDeFilmes());
 
             var loggerMock = new Mock<ILogger<FilmesController>>();
+
+            var optionsMock = new Mock<IOptions<ParametrosApi>>();
+            optionsMock.Setup(o => o.Value).Returns(new ParametrosApi
+            {
+                UrlApiCopaFilmes = "",
+                CacheExpiracaoEmMinutos = 30
+            });
+
             var memoryCacheMock = MockMemoryCache.GetMemoryCache(null);
 
-            var controller = new FilmesController(repositorioDeFilmesMock.Object, memoryCacheMock, loggerMock.Object);
+            var controller = new FilmesController(repositorioDeFilmesMock.Object, memoryCacheMock, loggerMock.Object, optionsMock.Object);
 
             var retorno = controller.ObterFilmes().GetAwaiter().GetResult();
 
@@ -55,9 +65,17 @@ namespace CopaFilmes.Testes.Integracao
                 .Throws(exception);
 
             var loggerMock = new Mock<ILogger<FilmesController>>();
+
+            var optionsMock = new Mock<IOptions<ParametrosApi>>();
+            optionsMock.Setup(o => o.Value).Returns(new ParametrosApi
+            {
+                UrlApiCopaFilmes = "",
+                CacheExpiracaoEmMinutos = 30
+            });
+
             var memoryCacheMock = MockMemoryCache.GetMemoryCache(null);
 
-            var controller = new FilmesController(repositorioDeFilmesMock.Object, memoryCacheMock, loggerMock.Object);
+            var controller = new FilmesController(repositorioDeFilmesMock.Object, memoryCacheMock, loggerMock.Object, optionsMock.Object);
 
             var retorno = controller.ObterFilmes().GetAwaiter().GetResult();
 

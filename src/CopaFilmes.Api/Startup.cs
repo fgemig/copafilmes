@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace CopaFilmes.Api
 {
@@ -17,8 +18,12 @@ namespace CopaFilmes.Api
 
         public IConfiguration Configuration { get; }
 
+        public IOptions<ParametrosApi> Parametros { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ParametrosApi>(Configuration.GetSection("ParametrosApi"));
+
             services.AddDependencyInjectionConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
