@@ -23,6 +23,8 @@ namespace CopaFilmes.Api
 
             services.AddSwaggerConfiguration();
 
+            services.AddMemoryCache();
+
             services.AddControllers();
         }
 
