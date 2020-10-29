@@ -17,13 +17,13 @@ namespace CopaFilmes.Api.Controllers
         private readonly IRepositorioDeFilmes _repositorioDeFilmes;
         private readonly IGerenciadorDePartidas _gerenciadorDePartidas;
         private readonly IGerenciadorDeCampeonato _gerenciadorDeCampeonato;
-        private readonly ILogger<FilmesController> _logger;
+        private readonly ILogger<PartidasController> _logger;
 
         public PartidasController(
             IRepositorioDeFilmes repositorioDeFilmes,
             IGerenciadorDePartidas gerenciadorDePartidas,
             IGerenciadorDeCampeonato gerenciadorDeCampeonato,
-            ILogger<FilmesController> logger)
+            ILogger<PartidasController> logger)
         {
             _repositorioDeFilmes = repositorioDeFilmes;
             _gerenciadorDePartidas = gerenciadorDePartidas;
@@ -41,22 +41,20 @@ namespace CopaFilmes.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ResultadoCampeonato), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post([FromBody] string[] idsSelecionados)
+        public async Task<IActionResult> DisputarCampeonato([FromBody] string[] idsSelecionados)
         {
             try
             {
                 if (idsSelecionados.Length == 0)
-                    return BadRequest("Nenhum ID foi informado");
+                    return BadRequest("Nenhum ID de filme foi informado");
 
                 if (idsSelecionados.Length != 8)
-                    return BadRequest("É permitido apenas 8 filmes por campeonato");
+                    return BadRequest("É permitido apenas 8 filmes no campeonato");
 
                 var filmes = await _repositorioDeFilmes
-                    .ObterFilmes();
+                    .ObterFilmesPorIds(idsSelecionados);
 
-                var filmesSelecionados = filmes.Where(c => idsSelecionados.Contains(c.Id));
-
-                var partidas = _gerenciadorDePartidas.DefinirPartidas(filmesSelecionados);
+                var partidas = _gerenciadorDePartidas.DefinirPartidas(filmes);
                 var resultado = _gerenciadorDeCampeonato.Disputar(partidas);
 
                 return Ok(resultado);
