@@ -8,14 +8,18 @@ namespace CopaFilmes.Api.Services
     public class GerenciadorDeCampeonato : IGerenciadorDeCampeonato
     {
         private readonly IGerenciadorDePartidas _gerenciadorDePartidas;
+        private readonly List<Partida> _partidasJogadas;
 
         public GerenciadorDeCampeonato(IGerenciadorDePartidas gerenciadorDePartidas)
         {
             _gerenciadorDePartidas = gerenciadorDePartidas;
+            _partidasJogadas = new List<Partida>();
         }
 
         public ResultadoCampeonato Disputar(IEnumerable<Partida> partidas)
         {
+            _partidasJogadas.AddRange(partidas);
+
             var filmesVencedores = new List<Filme>();
 
             foreach (var partida in partidas)
@@ -50,9 +54,15 @@ namespace CopaFilmes.Api.Services
 
                 filmeA = filmeCampeao;
                 filmeB = filmeViceCampeao;
+
+                _partidasJogadas.Add(partidadeDeDesempate);
             }
-            
-            var resultado = new ResultadoCampeonato(filmeA, filmeB);
+
+            var partidaDaFinal = new Partida(filmeA, filmeB);
+
+            _partidasJogadas.Add(partidaDaFinal);
+
+            var resultado = new ResultadoCampeonato(filmeA, filmeB, _partidasJogadas);
 
             return resultado;
         }
