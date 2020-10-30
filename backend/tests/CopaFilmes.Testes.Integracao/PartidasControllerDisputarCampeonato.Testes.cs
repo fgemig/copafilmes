@@ -147,7 +147,7 @@ namespace CopaFilmes.Testes.Integracao
 
             _gerenciadorDeCampeonatoMock
                 .Setup(r => r.Disputar(partidas))
-                .Returns(new ResultadoCampeonato(It.IsAny<Filme>(), It.IsAny<Filme>()));
+                .Returns(new ResultadoCampeonato(It.IsAny<Filme>(), It.IsAny<Filme>(), It.IsAny<Partida[]>()));
 
             var controller = CriarController();
 
