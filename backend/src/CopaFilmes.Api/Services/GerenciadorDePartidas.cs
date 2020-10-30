@@ -19,21 +19,20 @@ namespace CopaFilmes.Api.Services
 
             filmes = filmes.OrderBy(c => c.Titulo);
            
-            var ultimoFilme = totalDeFilmes;
+            var contadoReverso = totalDeFilmes - 1;
 
-            for (int contador = 1; contador <= filmes.Count() / 2; contador++)
+            for (int contador = 0; contador <= totalDeFilmes - 1; contador++)
             {
-                for (int contadorReverso = ultimoFilme; contadorReverso >= ultimoFilme; contadorReverso--)
+                if (contador < contadoReverso)
                 {
                     var novaPartida = new Partida(
-                        filmeA: filmes.ElementAt(contador - 1),
-                        filmeB: filmes.ElementAt(contadorReverso - 1)
-                    );
+                        filmeA: filmes.ElementAt(contador),
+                        filmeB: filmes.ElementAt(contadoReverso));
 
                     partidas.Add(novaPartida);
                 }
 
-                ultimoFilme--;
+                contadoReverso--;
             }
 
             return partidas;
