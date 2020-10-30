@@ -1,0 +1,39 @@
+.geral {
+    background: #6e6e6e;
+}
+
+.conteudo {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    max-width: 640px;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.titulo {
+    color: #a8a8a8;
+    text-transform: uppercase;
+    font-size: 8px;
+}
+
+.sub-titulo {
+    color: #ffffff;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.divisor {
+    background: #a8a8a8;
+    width: 25px;
+    height: 3px;
+    margin: auto;
+}
+
+.descricao {
+    color: #fbfbfb;
+    margin-top: 30px;
+    font-size: 11px;
+    font-weight: 300;
+}
