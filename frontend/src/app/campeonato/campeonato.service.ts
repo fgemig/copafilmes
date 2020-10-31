@@ -1,0 +1,20 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+import { ResultadoCampeonato } from './models/resultado-campeonato';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CampeonatoService {
+
+  constructor(private httpClient: HttpClient) { }
+
+  gerarCampeonato(idsSelecionados: string[]): Observable<ResultadoCampeonato> {
+    console.log('serviço recebeu: ', idsSelecionados);
+    return this.httpClient
+      .post<ResultadoCampeonato>(`${environment.urlApi}/partidas`,  idsSelecionados );
+  }
+}
