@@ -3,6 +3,11 @@
     [descricao]="'Veja o resultado final do Campeonato de filmes de forma simples e rápida'">
 </app-cabecalho>
 
-<app-posicao-campeonato [resultadoCampeonato]="resultadoCampeonato"></app-posicao-campeonato>
+<div *ngIf="resultadoCampeonato; else carregando">
+    <app-posicao-campeonato [resultadoCampeonato]="resultadoCampeonato"></app-posicao-campeonato>
+    <button [routerLink]="['']" appFocoBotao>Voltar</button>
+</div>
 
-<button [routerLink]="['']" appFocoBotao>Voltar</button>
+<ng-template #carregando>
+    <app-spinner></app-spinner>
+</ng-template>

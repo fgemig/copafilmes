@@ -22,7 +22,7 @@ export class ResultadoCampeonatoComponent implements OnInit {
   ngOnInit(): void {
 
     const filmesIdsSelecionados = this.filmesService.ObterFilmesSelecionados();
-    
+
     this.campeonatoService.gerarCampeonato(filmesIdsSelecionados)
         .subscribe((resultadoCampeonato) => {
           this.resultadoCampeonato = resultadoCampeonato;
