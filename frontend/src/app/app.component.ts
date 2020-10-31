@@ -9,24 +9,12 @@ import { filter, map, switchMap } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = '';
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private titleService: Title) { }
-    
+  titulo = 'Copa Filmes';
+
+  constructor(private titleService: Title) { }
+
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .pipe(map(() => this.activatedRoute))
-      .pipe(map(route => {
-        while (route.firstChild) {
-          route = route.firstChild;
-        }
-        return route;
-      }))
-      .pipe(switchMap(route => route.data))
-      .subscribe(event => this.titleService.setTitle(event.titulo));
+    this.titleService.setTitle(this.titulo);
   }
 }

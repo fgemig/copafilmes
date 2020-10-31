@@ -23,7 +23,7 @@ export class FilmesListaComponent implements OnInit {
     if ($event.target.checked) {
       this.filmeService.adicionarFilme(filme.id);
     } else {
-      this.filmeService.removerFilme();
+      this.filmeService.removerFilme(filme.id); // remover filme correto e nao o ultimo
     }
   }
 }

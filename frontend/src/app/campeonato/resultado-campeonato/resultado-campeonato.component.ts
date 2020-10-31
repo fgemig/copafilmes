@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { FilmesService } from './../../filmes/filmes.service';
 import { CampeonatoService } from './../campeonato.service';
@@ -16,8 +15,7 @@ export class ResultadoCampeonatoComponent implements OnInit {
 
   constructor(
     private campeonatoService: CampeonatoService,
-    private filmesService: FilmesService,
-    private router: Router) { }
+    private filmesService: FilmesService) { }
 
   ngOnInit(): void {
 

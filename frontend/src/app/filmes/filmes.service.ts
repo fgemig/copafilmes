@@ -13,7 +13,7 @@ export class FilmesService {
   private filmesSelecionados: BehaviorSubject<string[]>;
   private filmesSelecionadosArr: string[] = [];
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.filmesSelecionados = new BehaviorSubject<string[]>([]);
   }
 
@@ -34,9 +34,15 @@ export class FilmesService {
     this.filmesSelecionados.next(this.filmesSelecionadosArr);
   }
 
-  removerFilme(): void {
-    this.filmesSelecionadosArr.pop();
-    this.filmesSelecionados.next(this.filmesSelecionadosArr);
+  removerFilme(filmeId: string): void {
+
+    const indice = this.filmesSelecionadosArr
+      .findIndex(filme => filme === filmeId);
+
+    if (indice >= 0) {
+      this.filmesSelecionadosArr.splice(indice, 1);
+      this.filmesSelecionados.next(this.filmesSelecionadosArr);
+    }
   }
 
   removerFilmesSelecionados(): void {
