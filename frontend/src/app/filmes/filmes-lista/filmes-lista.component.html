@@ -1,5 +1,5 @@
-<ul class="filmes" *ngIf="(filmes$ | async) as filmes">
-    <li class="filme-item" *ngFor="let filme of filmes" >
+<ul class="filmes" *ngIf="(filmes$ | async) as filmes; else carregando">
+    <li class="filme-item" *ngFor="let filme of filmes" appElevar>
         <div class="filme-conteudo">
             <div class="filme-checkbox">
                 <input type="checkbox" (change)="selecionarFilme(filme, $event)">
@@ -11,3 +11,7 @@
         </div>
     </li>
 </ul>
+
+<ng-template #carregando>
+    <div class="mensagemCarregando">Carregando Filmes...</div>
+</ng-template>

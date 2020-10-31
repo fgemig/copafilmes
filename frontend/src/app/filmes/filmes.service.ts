@@ -21,18 +21,26 @@ export class FilmesService {
     return this.http.get<Filme[]>(`${environment.urlApi}/filmes`);
   }
 
-  obterFilmesSelecionados(): Observable<string[]> {
+  obterTotalSelecionado(): Observable<string[]> {
     return this.filmesSelecionados.asObservable();
   }
 
+  ObterFilmesSelecionados(): string[] {
+    return this.filmesSelecionadosArr;
+  }
+
   adicionarFilme(filmeId: string): void {
-    console.log('filmeId: ' + filmeId);
     this.filmesSelecionadosArr.push(filmeId);
     this.filmesSelecionados.next(this.filmesSelecionadosArr);
   }
 
   removerFilme(): void {
     this.filmesSelecionadosArr.pop();
+    this.filmesSelecionados.next(this.filmesSelecionadosArr);
+  }
+
+  removerFilmesSelecionados(): void {
+    this.filmesSelecionadosArr = [];
     this.filmesSelecionados.next(this.filmesSelecionadosArr);
   }
 }

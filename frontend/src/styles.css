@@ -13,3 +13,12 @@
       background: 	#a8a8a8;
       padding: 60px;
   }
+  
+  .elevar {
+    transform: scale(1.01);     
+    box-shadow: 0 0 10px #555;
+  }
+
+  .foco-botao {
+    transform: scale(1.01);     
+  }

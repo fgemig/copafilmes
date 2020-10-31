@@ -1,3 +1,4 @@
+import { ElevarDirective } from './diretivas/elevar.directive.ts/elevar.directive';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,8 @@ import { FilmesComponent } from './filmes.component';
   declarations: [
     FilmesComponent,
     FilmesListaComponent,
-    FilmesContadorComponent
+    FilmesContadorComponent,
+    ElevarDirective
   ],
   imports: [
     CommonModule,

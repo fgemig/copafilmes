@@ -14,8 +14,7 @@ export class FilmesContadorComponent implements OnInit {
   constructor(private filmesService: FilmesService) { }
 
   ngOnInit(): void {
-    this.filmesService.obterFilmesSelecionados()
+    this.filmesService.obterTotalSelecionado()
       .subscribe(selecionados => this.filmesSelecionados = selecionados);
   }
-
 }

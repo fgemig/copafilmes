@@ -1,1 +1,3 @@
-<button (click)="gerarCampeonato()" [disabled]="idsSelecionados.length !== 8">Gerar meu Campeonato</button>
+<button 
+    [routerLink]="['resultado']"
+    appBotaoDesabilitado>Gerar meu Campeonato</button>

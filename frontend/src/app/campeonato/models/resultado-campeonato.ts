@@ -1,7 +1,6 @@
-import { Campeao } from './campeao';
-import { ViceCampeao } from './vicecampeao';
+import { Filme } from './../../filmes/filme';
 
 export interface ResultadoCampeonato {
-    campeao: Campeao;
-    viceCampeao: ViceCampeao;
+    campeao: Filme;
+    viceCampeao: Filme;
 }

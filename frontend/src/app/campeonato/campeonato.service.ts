@@ -13,8 +13,7 @@ export class CampeonatoService {
   constructor(private httpClient: HttpClient) { }
 
   gerarCampeonato(idsSelecionados: string[]): Observable<ResultadoCampeonato> {
-    console.log('serviço recebeu: ', idsSelecionados);
     return this.httpClient
-      .post<ResultadoCampeonato>(`${environment.urlApi}/partidas`,  idsSelecionados );
+      .post<ResultadoCampeonato>(`${environment.urlApi}/partidas`, idsSelecionados );
   }
 }

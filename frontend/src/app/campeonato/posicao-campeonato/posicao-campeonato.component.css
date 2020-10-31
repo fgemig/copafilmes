@@ -1,0 +1,34 @@
+.classificacao {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .classificacao-item {
+    flex: 1;
+    list-style: none;
+    background: #fbfbfb;
+    margin-bottom: 10px;
+  } 
+
+  .classificacao-posicao {
+    display: table-cell;
+    color: #fbfbfb;
+    font-size: 32px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 40px;
+    background: #6e6e6e;
+  }
+
+  .classificacao-titulo {
+    display: table-cell;
+    font-size: 24px;
+    vertical-align: middle;
+    padding-left: 30px;
+  }
+
+  .classificacao-conteudo {
+    display: table;
+  }
