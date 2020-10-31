@@ -8,12 +8,18 @@ import { FilmesComponent } from './filmes/filmes.component';
 const routes: Routes = [
   {
     path: '',
-    component: FilmesComponent
+    component: FilmesComponent,
+    data: {
+      titulo: 'Copa Filmes'
+    }
   },
   {
     path: 'resultado',
     component: ResultadoCampeonatoComponent,
-    canActivate: [CampeonatoGuard]
+    canActivate: [CampeonatoGuard],
+    data: {
+      titulo: 'Copa Filmes - Resultado'
+    }
   }
 ];
 
