@@ -1,0 +1,54 @@
+.filmes {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .filme-item {
+    flex: 25%;
+    list-style: none;
+    padding: 25px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+  } 
+
+  .filme-item h1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .filme-item h2 {
+    font-size: 11px;
+    font-weight: 300;
+  }
+
+  .filme-checkbox {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
+  }
+
+  .filme-checkbox > input {
+    width: 18px;
+    height: 18px;
+  }
+
+  .filme-info {
+    display: table-cell;
+  }
+
+  .filme-conteudo {
+    display: table;
+  }
+
+  @media screen and (max-width: 992px) {
+    .filme-item {
+      flex: 50%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .filmes {
+      flex-direction: column;
+    }
+  }
