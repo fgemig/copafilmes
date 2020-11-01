@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ResultadoCampeonato } from '../models/resultado-campeonato';
 
@@ -7,14 +7,7 @@ import { ResultadoCampeonato } from '../models/resultado-campeonato';
   templateUrl: './posicao-campeonato.component.html',
   styleUrls: ['./posicao-campeonato.component.css']
 })
-export class PosicaoCampeonatoComponent implements OnInit {
+export class PosicaoCampeonatoComponent  {
 
   @Input() resultadoCampeonato: ResultadoCampeonato;
-
-  constructor() { }
-
-  ngOnInit(): void {
-    
-  }
-
 }
