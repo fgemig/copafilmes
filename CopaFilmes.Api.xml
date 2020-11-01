@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CopaFilmes.Api</name>
+    </assembly>
+    <members>
+        <member name="M:CopaFilmes.Api.Controllers.FilmesController.ObterFilmes">
+            <summary>
+            Obtém uma lista de filmes disponíveis para disputar o campeonato
+            </summary>       
+            <returns></returns>
+            <response code="200">Retorna uma lista de filmes</response>
+            <response code="500">Erro interno no servidor</response>
+        </member>
+        <member name="M:CopaFilmes.Api.Controllers.PartidasController.DisputarCampeonato(System.String[])">
+            <summary>
+            Cria um campeonato e retorna os filmes vencedores
+            </summary>
+            <param name="idsSelecionados">Ids dos filmes selecionados para competir</param>
+            <response code="200">Veículo cadastrado</response>
+            <response code="400">Requisição mal formatada</response>
+            <response code="500">Erro interno no servidor</response>
+        </member>
+        <member name="T:CopaFilmes.Api.Models.Filme">
+            <summary>
+            Cria a instância de um filme
+            </summary>
+        </member>
+        <member name="T:CopaFilmes.Api.Models.Partida">
+            <summary>
+            Cria a instância de uma partida e obtém o filme vencedor
+            </summary>
+        </member>
+        <member name="M:CopaFilmes.Api.Models.Partida.FilmeVencedor">
+            <summary>
+            Obtém o filme vencedor por critério de nota. Caso as notas sejam iguais, o vencedor será definido por ordem alfabética.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CopaFilmes.Api.Models.Partida.VencedorPorCriterioDeDesempate">
+            <summary>
+            Retorna o vencedor por critério de desempate. Será considerado o primeiro em ordem alfabética.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

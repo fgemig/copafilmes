@@ -14,7 +14,7 @@ namespace CopaFilmes.Api.Controllers
 {
     [Produces("application/json")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class FilmesController : ControllerBase
     {
         private readonly IRepositorioDeFilmes _repositorioDeFilmes;
