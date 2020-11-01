@@ -18,7 +18,7 @@ export class FilmesService {
   }
 
   obterFilmes(): Observable<Filme[]> {
-    return this.http.get<Filme[]>(`${environment.urlApi}/filmes`);
+    return this.http.get<Filme[]>(`${environment.urlApi}/api/filmes`);
   }
 
   obterTotalSelecionado(): Observable<string[]> {

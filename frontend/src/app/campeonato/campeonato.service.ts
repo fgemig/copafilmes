@@ -14,6 +14,6 @@ export class CampeonatoService {
 
   gerarCampeonato(idsSelecionados: string[]): Observable<ResultadoCampeonato> {
     return this.httpClient
-      .post<ResultadoCampeonato>(`${environment.urlApi}/partidas`, idsSelecionados );
+      .post<ResultadoCampeonato>(`${environment.urlApi}/api/partidas`, idsSelecionados );
   }
 }
