@@ -4,8 +4,13 @@
 </app-cabecalho>
 
 <div *ngIf="resultadoCampeonato; else carregando">
+    
     <app-posicao-campeonato [resultadoCampeonato]="resultadoCampeonato"></app-posicao-campeonato>
-    <button [routerLink]="['']" appFocoBotao>Voltar</button>
+    
+    <div class="texto-centralizado">
+        <button [routerLink]="['']" appFocoBotao>Voltar</button>
+    </div>
+    
 </div>
 
 <ng-template #carregando>

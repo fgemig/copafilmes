@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { FocoBotaoDirective } from './diretivas/foco-botao/foco-botao.directive';
 import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
-import { SpinnerComponent } from './spinner/spinner.component';
 import { RodapeComponent } from './rodape/rodape.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { RodapeComponent } from './rodape/rodape.component';
     FocoBotaoDirective,
     SpinnerComponent,
     NaoEncontradoComponent,
-    RodapeComponent
+    RodapeComponent,
   ],
   imports: [
     CommonModule,

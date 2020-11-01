@@ -1,9 +1,12 @@
 .rodape {  
+  position: absolute;
+  left: 0;
   bottom: 0;
+  width: 100%;
+  overflow: hidden;
   text-align: center;
+  padding: 20px;
   color: #ffffff;
-  margin-top: 50px;
-  font-size: 12px;
 }
 
 a:link, a:visited {

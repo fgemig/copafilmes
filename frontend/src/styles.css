@@ -5,11 +5,13 @@
     box-sizing: border-box
   }
 
-  html{
+  html {
     font-family: 'Roboto', sans-serif;
+    position: relative;
+    min-height: 100%;
   }
 
-  body{
+  body {
       background: 	#a8a8a8;
       padding: 60px;
   }
@@ -21,4 +23,29 @@
 
   .foco-botao {
     transform: scale(1.01);     
+  }
+
+  button {
+    background-color: #6e6e6e;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  button:disabled,
+  button[disabled] {    
+    cursor: not-allowed;
+    background-color: #ccc;
+  }
+
+  .alinhado-a-direita {
+    float: right;
+  }
+
+  .texto-centralizado {
+    text-align: center;
   }
