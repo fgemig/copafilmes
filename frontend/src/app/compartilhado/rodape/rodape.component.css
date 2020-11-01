@@ -1,0 +1,16 @@
+.rodape {  
+  bottom: 0;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 50px;
+  font-size: 12px;
+}
+
+a:link, a:visited {
+    color: white;
+    text-decoration: none;
+  }
+  
+  a:hover, a:active {
+    color: #ffffff;
+  }

@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CampeonatoGuard } from './campeonato/campeonato.guard';
 import { ResultadoCampeonatoComponent } from './campeonato/resultado-campeonato/resultado-campeonato.component';
+import { NaoEncontradoComponent } from './compartilhado/nao-encontrado/nao-encontrado.component';
 import { FilmesComponent } from './filmes/filmes.component';
+
 
 const routes: Routes = [
   {
@@ -20,6 +22,17 @@ const routes: Routes = [
     data: {
       titulo: 'Copa Filmes - Resultado'
     }
+  },
+  {
+    path: 'nao-encontrado',
+    component: NaoEncontradoComponent,
+    data: {
+      title: 'Página não encontrada'
+    }
+  },
+  {
+    path: '**',
+    redirectTo: 'nao-encontrado'
   }
 ];
 

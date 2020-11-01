@@ -1,20 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { FocoBotaoDirective } from './diretivas/foco-botao/foco-botao.directive';
+import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { RodapeComponent } from './rodape/rodape.component';
 
 @NgModule({
   declarations: [
     CabecalhoComponent,
     FocoBotaoDirective,
-    SpinnerComponent
+    SpinnerComponent,
+    NaoEncontradoComponent,
+    RodapeComponent
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   exports: [
     CabecalhoComponent,
     FocoBotaoDirective,
-    SpinnerComponent]
+    SpinnerComponent,
+    NaoEncontradoComponent,
+    RodapeComponent
+  ]
 })
 export class CompartilhadoModule { }

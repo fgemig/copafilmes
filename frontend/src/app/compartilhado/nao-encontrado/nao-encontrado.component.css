@@ -1,0 +1,15 @@
+button {
+    background-color: #6e6e6e;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;    
+  }
+
+  .centralizado {
+    margin-top: 50px;
+    text-align: center;
+  }
