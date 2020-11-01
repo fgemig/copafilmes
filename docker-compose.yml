@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  frontend:
+    image: copafilmes_frontend
+    build:      
+      context: ./frontend
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - backend
+    ports:
+      - "20000:80"
+    networks:
+      - copafilmes-network
+
+  backend:
+    image: copafilmes_backend
+    build:
+      context: ./backend/src
+    ports:
+      - "20001:80"
+    networks:
+      - copafilmes-network
+
+networks: 
+  copafilmes-network:
+    driver: bridge
