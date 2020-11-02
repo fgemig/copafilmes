@@ -6,6 +6,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -147,7 +148,7 @@ namespace CopaFilmes.Testes.Integracao
 
             _gerenciadorDeCampeonatoMock
                 .Setup(r => r.Disputar(partidas))
-                .Returns(new ResultadoCampeonato(It.IsAny<Filme>(), It.IsAny<Filme>(), It.IsAny<Partida[]>()));
+                .Returns(new ResultadoCampeonato(It.IsAny<Filme>(), It.IsAny<Filme>()));
 
             var controller = CriarController();
 
@@ -157,6 +158,46 @@ namespace CopaFilmes.Testes.Integracao
                 .GetResult();
 
             _gerenciadorDeCampeonatoMock.Verify(r => r.Disputar(partidas), Times.Once());
+        }
+
+        [Fact]
+        public void DeveGerarExcecaoELogarAMensagemAoIniciarUmaPartidaComParametrosInvalidos()
+        {
+            var parametrosPost = new string[] { "tt3606756", "tt4881806", "tt5164214", "tt7784604", "tt4154756", "tt5463162", "tt3778644", "tt3501632" };
+
+            var filmes = FilmesRepositorioFake
+                .ObterListaDeFilmes()
+                .Take(8);
+
+            _repositorioDeFilmesMock
+                .Setup(r => r.ObterFilmesPorIds(parametrosPost))
+                .Returns(Task.FromResult(filmes));
+
+            _gerenciadorDePartidasMock
+                .Setup(r => r.DefinirPartidas(filmes))
+                .Returns(It.IsAny<Partida[]>());
+
+            var exception = new Exception();
+
+            _gerenciadorDeCampeonatoMock
+                .Setup(r => r.Disputar(It.IsAny<Partida[]>()))
+                .Throws(exception);
+
+            var controller = CriarController();
+
+            var retorno = controller
+                .DisputarCampeonato(parametrosPost)
+                .GetAwaiter()
+                .GetResult();
+
+            _loggerMock.Verify(l =>
+               l.Log(
+                   LogLevel.Error,
+                   It.IsAny<EventId>(),
+                   It.Is<object>((v, t) => true),
+                   exception,
+                   It.Is<Func<object, Exception, string>>((v, t) => true)),
+                   Times.Once());
         }
     }
 }

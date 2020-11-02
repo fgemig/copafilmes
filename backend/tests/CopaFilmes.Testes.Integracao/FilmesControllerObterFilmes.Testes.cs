@@ -6,7 +6,6 @@ using CopaFilmes.Testes.Integracao.Helpers;
 using CopaFilmes.Testes.Integracao.Mocks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
