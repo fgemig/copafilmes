@@ -19,7 +19,15 @@ describe('GerarCampeonatoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it(`deve exibir um botão 'Gerar meu Campeonato'`, () => {
+
+    fixture.detectChanges();
+
+    const elemento: HTMLElement = fixture.nativeElement;
+
+    const botaoGerarMeuCampeonato = elemento.querySelector('button');
+
+    expect(botaoGerarMeuCampeonato).toBeTruthy();
+    expect(botaoGerarMeuCampeonato.textContent).toContain('Gerar meu Campeonato');
   });
 });

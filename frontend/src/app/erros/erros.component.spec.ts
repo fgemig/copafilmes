@@ -1,25 +1,41 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErroComponent } from './erro.component';
+import { ErrosComponent } from './erros.component';
 
-describe('ErroComponent', () => {
-  let component: ErroComponent;
-  let fixture: ComponentFixture<ErroComponent>;
+describe('ErrosComponent', () => {
+  let component: ErrosComponent;
+  let fixture: ComponentFixture<ErrosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErroComponent ]
+      declarations: [ErrosComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErroComponent);
+    fixture = TestBed.createComponent(ErrosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('deve criar o componente com um cabeçalho', () => {
+
+    fixture.detectChanges();
+
+    const elemento = fixture.debugElement.nativeElement;
+    expect(elemento.querySelector('app-cabecalho')).not.toBe(null);
+  });
+
+  it('deve criar o componente com um botão voltar', () => {
+
+    fixture.detectChanges();
+
+    const elemento: HTMLElement = fixture.nativeElement;
+
+    const botaoVoltar = elemento.querySelector('button');
+
+    expect(botaoVoltar).toBeTruthy();
+    expect(botaoVoltar.textContent).toContain('Voltar');
   });
 });
