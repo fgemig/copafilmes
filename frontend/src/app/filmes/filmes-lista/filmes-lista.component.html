@@ -1,16 +1,18 @@
-<ul class="filmes" *ngIf="(filmes$ | async) as filmes; else carregando">
-    <li class="filme-item" *ngFor="let filme of filmes" appElevar>
-        <div class="filme-conteudo">
-            <div class="filme-checkbox">
-                <input type="checkbox" (change)="selecionarFilme(filme, $event)">
+<section>
+    <ul class="filmes" *ngIf="(filmes$ | async) as filmes; else carregando">
+        <li class="filme-item" *ngFor="let filme of filmes" appElevar>
+            <div class="filme-conteudo">
+                <div class="filme-checkbox">
+                    <input type="checkbox" (change)="selecionarFilme(filme, $event)">
+                </div>
+                <div class="filme-info">
+                    <div class="filme-titulo">{{ filme.titulo }}</div>
+                    <div class="filme-ano">{{ filme.ano }}</div>
+                </div>
             </div>
-            <div class="filme-info">
-                <h1>{{ filme.titulo }}</h1>
-                <h2>{{ filme.ano }}</h2>
-            </div>
-        </div>
-    </li>
-</ul>
+        </li>
+    </ul>
+</section>
 
 <ng-template #carregando>
     <app-spinner></app-spinner>
