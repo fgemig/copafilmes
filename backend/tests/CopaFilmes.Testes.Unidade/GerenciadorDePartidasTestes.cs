@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CopaFilmes.Api.Interfaces;
-using CopaFilmes.Api.Services;
+using CopaFilmes.Api.Models;
 using CopaFilmes.Testes.Unidade.Mocks;
 using FluentAssertions;
 using Xunit;

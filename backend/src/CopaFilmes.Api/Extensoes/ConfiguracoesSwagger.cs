@@ -5,11 +5,11 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace CopaFilmes.Api.Configs
+namespace CopaFilmes.Api.Extensoes
 {
-    public static class SwaggerConfig
+    public static class ConfiguracoesSwagger
     {
-        public static void AddSwaggerConfiguration(this IServiceCollection services)
+        public static void AddSwagger(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 

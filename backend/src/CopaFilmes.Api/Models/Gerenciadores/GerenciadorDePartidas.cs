@@ -1,10 +1,9 @@
 ﻿using CopaFilmes.Api.Interfaces;
-using CopaFilmes.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CopaFilmes.Api.Services
+namespace CopaFilmes.Api.Models
 {
     public class GerenciadorDePartidas : IGerenciadorDePartidas
     {

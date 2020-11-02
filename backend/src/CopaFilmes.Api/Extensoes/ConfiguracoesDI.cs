@@ -1,15 +1,15 @@
-﻿using CopaFilmes.Api.Dados;
+﻿using CopaFilmes.Api.Repositorios;
 using CopaFilmes.Api.Interfaces;
-using CopaFilmes.Api.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using CopaFilmes.Api.Models;
 
-namespace CopaFilmes.Api.Configs
+namespace CopaFilmes.Api.Extensoes
 {
-    public static class DependenciasConfig
+    public static class ConfiguracoesDI
     {
-        public static void AddDependencyInjectionConfiguration(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpClient<IRepositorioDeFilmes, RepositorioDeFilmes>(client =>
             {

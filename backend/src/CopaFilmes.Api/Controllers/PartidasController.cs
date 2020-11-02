@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using CopaFilmes.Api.Interfaces;
 using CopaFilmes.Api.Models;
@@ -34,8 +33,8 @@ namespace CopaFilmes.Api.Controllers
         /// <summary>
         /// Cria um campeonato e retorna os filmes vencedores
         /// </summary>
-        /// <param name="idsSelecionados">Ids dos filmes selecionados para competir</param>
-        /// <response code="200">Veículo cadastrado</response>
+        /// <param name="idsSelecionados">Ids dos filmes selecionados para o campeonato</param>
+        /// <response code="200">Campeonato gerado</response>
         /// <response code="400">Requisição mal formatada</response>
         /// <response code="500">Erro interno no servidor</response>
         [HttpPost]

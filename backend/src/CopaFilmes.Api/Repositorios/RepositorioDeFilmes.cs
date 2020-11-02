@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace CopaFilmes.Api.Dados
+namespace CopaFilmes.Api.Repositorios
 {
     public class RepositorioDeFilmes : IRepositorioDeFilmes
     {

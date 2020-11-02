@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CopaFilmes.Api.Configs;
 using CopaFilmes.Api.Interfaces;
 using CopaFilmes.Api.Models;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +24,7 @@ namespace CopaFilmes.Api.Controllers
         public FilmesController(
             IRepositorioDeFilmes repositorioDeFilmes, 
             IMemoryCache cache, 
-            ILogger<FilmesController> logger,
+            ILogger<FilmesController> logger, 
             IOptions<ParametrosApi> parametros)
         {
             _repositorioDeFilmes = repositorioDeFilmes;
@@ -48,7 +47,7 @@ namespace CopaFilmes.Api.Controllers
             {
                 if (_cache.TryGetValue(ChavesCache.FILMES, out IEnumerable<Filme> filmesCache))
                 {
-                    return Ok(filmesCache);                   
+                    return Ok(filmesCache);
                 }
 
                 var filmes = await _repositorioDeFilmes.ObterFilmes();
@@ -58,12 +57,12 @@ namespace CopaFilmes.Api.Controllers
 
                 return Ok(filmes);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "Falha ao consultar a API CopaFilmes");
 
                 return StatusCode(500);
-            }          
+            }
         }
     }
 }

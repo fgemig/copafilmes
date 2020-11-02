@@ -1,11 +1,10 @@
-using CopaFilmes.Api.Configs;
+using CopaFilmes.Api.Extensoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace CopaFilmes.Api
 {
@@ -18,15 +17,13 @@ namespace CopaFilmes.Api
 
         public IConfiguration Configuration { get; }
 
-        public IOptions<ParametrosApi> Parametros { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<ParametrosApi>(Configuration.GetSection("ParametrosApi"));
+            services.AddParametros(Configuration);
 
-            services.AddDependencyInjectionConfiguration(Configuration);
+            services.AddDependencyInjection(Configuration);
 
-            services.AddSwaggerConfiguration();
+            services.AddSwagger();
 
             services.AddMemoryCache();
 

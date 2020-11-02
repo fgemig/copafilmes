@@ -1,4 +1,4 @@
-﻿namespace CopaFilmes.Api.Configs
+﻿namespace CopaFilmes.Api.Models
 {
     public class ParametrosApi
     {

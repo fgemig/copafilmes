@@ -1,5 +1,4 @@
-﻿using CopaFilmes.Api.Configs;
-using CopaFilmes.Api.Controllers;
+﻿using CopaFilmes.Api.Controllers;
 using CopaFilmes.Api.Interfaces;
 using CopaFilmes.Api.Models;
 using CopaFilmes.Testes.Integracao.Helpers;
