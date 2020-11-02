@@ -348,5 +348,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-tests/CopaFilmes.Testes.Integracao/relatorio-cobertura
-tests/CopaFilmes.Testes.Unidade/relatorio-cobertura
+tests/relatorio-cobertura
